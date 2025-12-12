@@ -1,74 +1,156 @@
-❤️ MatchMakerAI
+# MatchmakerAI 🤖💘
 
-Predicting Relationship Status on OKCupid Using Machine Learning
+## Overview
 
-📌 Project Overview
+**MatchmakerAI** is a machine learning project that predicts whether a person is **single** or **not single** using a combination of **textual self-description (essay)** and **age**.
 
-MatchMakerAI is a machine learning project designed to analyze user profile information from OKCupid to predict relationship status.
-The goal is to provide insights that can improve matchmaking recommendations on dating platforms.
+The project demonstrates a **complete ML workflow**, with special focus on:
 
-This project demonstrates skills in:
+* Handling **class imbalance** correctly
+* Avoiding **data leakage**
+* Comparing model performance **before and after resampling**
+* Deploying the final model using **Streamlit**
 
-✔ Natural Language Processing
-✔ Handling imbalanced data
-✔ Classification modeling
-✔ Data visualization
-✔ Real-world evaluation techniques
+---
 
-🎯 Objective
+## Problem Statement
 
-Build a supervised ML model that predicts whether a user is:
+Given:
 
-single
+* A short **essay** describing a person
+* Their **age**
 
-not single (seeing someone / married)
+The goal is to predict:
 
-Using:
+* `single`
+* `not_single`
 
-Text essays (TF-IDF)
+This is formulated as a **binary classification problem**.
 
-Age
+---
 
-Height
+## Dataset
 
-🗂 Dataset  https://drive.google.com/drive/folders/1dkxyM9rPDn7y_4uhfCl3AGxlaP5UTZHq?usp=drive_link
+* The dataset contains user essays, age, and relationship status.
+* The data was initially **imbalanced**, with one class dominating the others.
 
-Source: OKCupid public profiles dataset
+📌 **Dataset Link:**
 
-Total records: ~60,000
+> 👉 *Add dataset link here*
 
-Dataset contains:
+---
 
-Personal essays
+## Features Used
 
-Demographic data
+* **Essay (Text Feature)** – main source of semantic information
+* **Age (Numeric Feature)** – provides useful demographic signal
 
-⚠️ Full dataset is over 140MB → GitHub size limit is 100MB
-➡️ A sample dataset (profiles_sample.csv) is included for reproducibility.
+❌ **Height was removed** after analysis showed it did not improve performance and only added noise.
 
-Full dataset available here: (add link when needed)
+---
 
-🔧 Techniques Used
-Category	Method
-Text preprocessing	TF-IDF vectorization
-Numeric scaling	StandardScaler
-Classification	Logistic Regression
-Train/Test strategy	Stratified split
-Data imbalance fix	Random oversampling
-📊 Model Performance (After Balancing)
-Metric	not_single	single
-Precision	0.83	0.90
-Recall	0.91	0.81
-F1-score	0.87	0.85
+## Methodology
 
-📌 Accuracy ≈ 86%
-✔ Model predicts both classes fairly
-✔ Strong recall for relationship users (important for matchmaking)
+### 1. Train–Test Split
 
-🧠 Key Findings
+* Data was split into training and testing sets **before any resampling**.
+* The test set was kept **completely untouched**.
 
-Essay content contains strong relationship-status signals
+### 2. Resampling Strategy
 
-Balancing data dramatically improves real-world performance
+* **Upsampling** was applied **only on the training set** to handle class imbalance.
+* Random sampling with replacement was used.
 
-Accuracy alone is misleading when classes are imbalanced
+> This prevents data leakage and ensures honest evaluation.
+
+### 3. Model Pipeline
+
+* Text preprocessing for essays
+* Standard scaling for numeric features
+* Logistic Regression classifier
+
+---
+
+## Experiments
+
+Two experiments were conducted:
+
+### 🔹 Experiment 1: Before Resampling
+
+* Trained on imbalanced data
+* Achieved high accuracy, but poor minority-class performance
+
+### 🔹 Experiment 2: After Resampling
+
+* Trained on balanced training data
+* Lower accuracy, but significantly improved fairness and recall
+
+> The second model was selected as the final model.
+
+---
+
+## Evaluation Metrics
+
+The model was evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1-score
+
+**F1-score** was emphasized due to class imbalance.
+
+---
+
+## Streamlit Application 🚀
+
+A Streamlit web application was built to demonstrate the model interactively.
+
+### App Inputs:
+
+* Essay (text)
+* Age (numeric)
+
+### App Output:
+
+* Predicted relationship status (Single / Not Single)
+
+📌 **Streamlit App Link:**
+
+> 👉 *Add Streamlit app link here*
+
+---
+
+## How to Run Locally
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run Streamlit app
+streamlit run app.py
+```
+
+---
+
+
+
+## Key Takeaways
+
+* High accuracy on imbalanced data can be misleading
+* Resampling must be applied **only to the training set**
+* Simpler models with relevant features generalize better
+* Deployment should reflect the exact training pipeline
+
+---
+
+## Disclaimer
+
+This project is for **educational and research purposes only**. Predictions are probabilistic and should not be interpreted as definitive judgments about individuals.
+
+---
+
+## Author
+
+**Khodor**
+Computer Science Student | Machine Learning Enthusiast
