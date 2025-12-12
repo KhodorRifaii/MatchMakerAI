@@ -122,11 +122,12 @@ A Streamlit web application was built to demonstrate the model interactively.
 ## How to Run Locally
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+# Install required libraries
+pip install streamlit scikit-learn pandas numpy
 
-# Run Streamlit app
+# Run the Streamlit app
 streamlit run app.py
+
 ```
 
 ---
