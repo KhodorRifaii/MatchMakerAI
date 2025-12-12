@@ -1,22 +1,29 @@
 import streamlit as st
-import pickle
 import pandas as pd
+import joblib
+import os
 
+MODEL_PATH = "matchmaker_model.pkl"
 
-with open("matchmaker_model.pkl", "rb") as f:
-    model = pickle.load(f)
+if not os.path.exists(MODEL_PATH):
+    st.error("Model file not found.")
+    st.stop()
 
-st.set_page_config(page_title="MatchMakerAI", page_icon="❤️")
+model = joblib.load(MODEL_PATH)
 
-st.title("❤️ MatchMakerAI")
-st.write("Predict relationship status from profile information")
+st.set_page_config(page_title="MatchmakerAI", page_icon="❤️")
+st.title("❤️ MatchmakerAI")
 
 essay = st.text_area("Profile Essay", height=200)
 age = st.slider("Age", 18, 70, 25)
 
 if st.button("Predict"):
+    if essay.strip() == "":
+        st.warning("Please enter an essay.")
+        st.stop()
+
     input_df = pd.DataFrame({
-        "essay": [essay],
+        "essays": [essay],
         "age": [age]
     })
 
