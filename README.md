@@ -36,7 +36,7 @@ This is formulated as a **binary classification problem**.
 
 📌 **Dataset Link:**
 
-> 👉 *Add dataset link here*
+> 👉 [https://drive.google.com/drive/u/1/folders/1dkxyM9rPDn7y_4uhfCl3AGxlaP5UTZHq](https://drive.google.com/file/d/1g2FrbjYpAZQLz8zop7rcIaWQMHTbYAxA/view?usp=sharing)
 
 ---
 
@@ -45,7 +45,7 @@ This is formulated as a **binary classification problem**.
 * **Essay (Text Feature)** – main source of semantic information
 * **Age (Numeric Feature)** – provides useful demographic signal
 
-❌ **Height was removed** after analysis showed it did not improve performance and only added noise.
+
 
 ---
 
@@ -115,9 +115,6 @@ A Streamlit web application was built to demonstrate the model interactively.
 
 * Predicted relationship status (Single / Not Single)
 
-📌 **Streamlit App Link:**
-
-> 👉 *Add Streamlit app link here*
 
 ---
 
