@@ -1,22 +1,22 @@
 import streamlit as st
-from joblib import load
+import pickle
 import pandas as pd
 
 
-model = load("matchmaker_model.pkl")
+with open("matchmaker_model.pkl", "rb") as f:
+    model = pickle.load(f)
 
 st.set_page_config(page_title="MatchMakerAI", page_icon="❤️")
 
 st.title("❤️ MatchMakerAI")
 st.write("Predict relationship status from profile information")
 
-
 essay = st.text_area("Profile Essay", height=200)
 age = st.slider("Age", 18, 70, 25)
 
 if st.button("Predict"):
     input_df = pd.DataFrame({
-        "essay": [essay],   
+        "essay": [essay],
         "age": [age]
     })
 
