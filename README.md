@@ -105,6 +105,7 @@ The model was evaluated using:
 ## Streamlit Application 🚀
 
 A Streamlit web application was built to demonstrate the model interactively.
+<img width="1082" height="810" alt="Screenshot 2025-12-12 160635" src="https://github.com/user-attachments/assets/8f8216c4-43dd-41b7-a1de-288a16520573" />
 
 ### App Inputs:
 
